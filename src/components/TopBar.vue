@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { router } from '../router';
 import CartIcon from './icons/CartIcon.vue';
 import LoginIcon from './icons/LoginIcon.vue';
 
@@ -9,12 +10,16 @@ import LoginIcon from './icons/LoginIcon.vue';
 
         <div class="flex flex-1 justify-start gap-4 ml-10
         ">
+        <router-link to="/">
             Logo
+        </router-link>
         </div>
 
         <div class="flex flex-1 justify-center gap-6">
             <button class=" hover:text-gray-700">
+                <router-link to="/">
                 Home
+                </router-link>
             </button>
             <button class=" hover:text-gray-700">
                 For Kids
