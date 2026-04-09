@@ -14,8 +14,8 @@ const handleSearch = () => {
 </script>
 
 <template>
-  <div class="flex justify-center gap-2 ml-10 mr-10 mt-6">
-    <div class="relative w-full max-w-xl">
+  <div class="flex justify-center gap-2 mt-6">
+    <div class="relative w-full ">
       <SearchIcon class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
       <input
         v-model="keyword"
