@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TopBar from '../components/TopBar.vue';
-import { ref, onMounted, computed } from 'vue';
-import { useRoute } from 'vue-router';
-import { getProductById } from '../services/Productservice';
-import type { Product } from '../services/Productservice';
+import TopBar from "../components/TopBar.vue";
+import { ref, onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
+import { getProductById } from "../services/Productservice";
+import type { Product } from "../services/Productservice";
 
 const route = useRoute();
 const product = ref<Product | null>(null);
@@ -15,19 +15,19 @@ onMounted(async () => {
 });
 
 const getImageUrl = (imagePath: string) => {
-  if (!imagePath || imagePath.trim() === '' || imagePath === 'test.png') {
-    return '/src/assets/bicycle.jpg'; // fallback image
+  if (!imagePath || imagePath.trim() === "" || imagePath === "test.png") {
+    return "/src/assets/bicycle.jpg"; // fallback image
   }
 
   // Fix double paths
-  const cleanPath = imagePath.replace('/images//images/', '/images/');
+  const cleanPath = imagePath.replace("/images//images/", "/images/");
 
   return `http://localhost:5111${cleanPath}`;
 };
 
 const handleImageError = (event: Event) => {
   const img = event.target as HTMLImageElement;
-  img.src = '/src/assets/bicycle.jpg'; // fallback on error
+  img.src = "/src/assets/bicycle.jpg"; // fallback on error
 };
 
 const increaseQuantity = () => {
@@ -41,11 +41,6 @@ const decreaseQuantity = () => {
     quantity.value--;
   }
 };
-
-const totalPrice = computed(() => {
-  if (!product.value) return 0;
-  return product.value.productPrice * quantity.value;
-});
 
 const canIncrease = computed(() => {
   return product.value ? quantity.value < product.value.stock : false;
@@ -61,19 +56,14 @@ const canDecrease = computed(() => {
     <TopBar />
 
     <div v-if="product" class="container mx-auto px-4 py-8">
-
       <!-- Product Details Layout -->
       <div class="bg-white rounded-lg shadow-lg overflow-hidden">
         <div class="md:flex">
           <!-- Product Image Section -->
           <div class="md:w-1/2">
             <div class="aspect-square bg-gray-100 flex items-center justify-center p-8">
-              <img
-                :src="getImageUrl(product.image)"
-                alt="product image"
-                class="max-w-full max-h-full object-contain"
-                @error="handleImageError"
-              />
+              <img :src="getImageUrl(product.image)" alt="product image" class="max-w-full max-h-full object-contain"
+                @error="handleImageError" />
             </div>
           </div>
 
@@ -82,103 +72,67 @@ const canDecrease = computed(() => {
             <div class="space-y-6">
               <!-- Product Title -->
               <div>
-                <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ product.productName }}</h1>
-                <span class="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
+                <h1 class="text-3xl font-bold text-gray-900 text-left mb-2">
+                  {{ product.productName }}
+                </h1>
+                <h3 class="text-gray-600 text-sm text-left py-1">
                   {{ product.categories }}
-                </span>
+                </h3>
               </div>
 
               <!-- Price -->
               <div class="flex items-baseline space-x-4">
-                <span class="text-4xl font-bold text-blue-600">{{ product.productPrice }} ฿</span>
-                <span class="text-lg text-gray-500">per item</span>
+                <span class="text-4xl font-bold text-black">$ {{ product.productPrice }}</span>
               </div>
-
-              <!-- Stock Information -->
-              <div class="flex items-center space-x-2">
-                <span class="text-sm text-gray-600">Stock:</span>
-                <span
-                  :class="[
-                    'font-semibold',
-                    product.stock > 10 ? 'text-green-600' :
-                    product.stock > 0 ? 'text-yellow-600' : 'text-red-600'
-                  ]"
-                >
-                  {{ product.stock }} available
-                </span>
-              </div>
-
               <!-- Quantity Selector -->
-              <div class="space-y-3">
+              <div class="space-y-3 text-left">
                 <label class="block text-sm font-medium text-gray-700">Quantity</label>
-                <div class="flex items-center space-x-3">
-                  <button
-                    @click="decreaseQuantity"
-                    :disabled="!canDecrease"
-                    :class="[
-                      'w-10 h-10 rounded-full flex items-center justify-center transition-colors',
-                      canDecrease
-                        ? 'bg-gray-200 hover:bg-gray-300 text-gray-700'
-                        : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    ]"
-                  >
+
+                <div class="inline-flex items-center justify-start border border-gray-400 rounded-md overflow-hidden">
+                  <!-- Decrease Button -->
+                  <button @click="decreaseQuantity" :disabled="!canDecrease" :class="[
+                    'w-10 h-10 flex items-center justify-center transition-colors',
+                    canDecrease
+                      ? 'bg-gray-200 hover:bg-gray-300 text-gray-700'
+                      : 'bg-gray-100 text-gray-400 cursor-not-allowed',
+                  ]">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
                     </svg>
                   </button>
 
-                  <span class="text-xl font-semibold w-12 text-center">{{ quantity }}</span>
+                  <!-- Quantity Display -->
+                  <span
+                    class="w-12 h-10 flex items-center justify-center bg-gray-200 text-xl font-semibold border-l border-r border-gray-400">
+                    {{ quantity }}
+                  </span>
 
-                  <button
-                    @click="increaseQuantity"
-                    :disabled="!canIncrease"
-                    :class="[
-                      'w-10 h-10 rounded-full flex items-center justify-center transition-colors',
-                      canIncrease
-                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                        : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    ]"
-                  >
+                  <!-- Increase Button -->
+                  <button @click="increaseQuantity" :disabled="!canIncrease" :class="[
+                    'w-10 h-10 flex items-center justify-center transition-colors',
+                    canIncrease
+                      ? 'bg-gray-200 hover:bg-gray-300 text-gray-700'
+                      : 'bg-gray-100 text-gray-400 cursor-not-allowed',
+                  ]">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                     </svg>
                   </button>
                 </div>
-
-                <!-- Quantity Limits Info -->
-                <div class="text-sm text-gray-500">
-                  <p v-if="quantity >= product.stock" class="text-yellow-600">
-                    Maximum quantity reached ({{ product.stock }})
-                  </p>
-                  <p v-else-if="quantity === 0" class="text-gray-400">
-                    Minimum quantity is 0
-                  </p>
-                </div>
               </div>
-
-              <!-- Total Price -->
-                <div class="flex justify-between items-center text-xl font-bold">
-                  <span>Total:</span>
-                  <span class="text-blue-600">{{ totalPrice }} ฿</span>
-                </div>
-              
-
+              <!-- Stock Information -->
+              <div class="flex items-center space-x-2">
+                <span class="text-sm text-gray-600">Stock: {{ product.stock }} items</span>
+              </div>
               <!-- Action Buttons -->
               <div class="space-y-3">
-                <button
-                  :disabled="quantity === 0"
-                  :class="[
-                    'w-full py-3 px-6 rounded-lg font-semibold transition-colors',
-                    quantity > 0
-                      ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  ]"
-                >
+                <button :disabled="quantity === 0" :class="[
+                  'w-full py-3 px-6 rounded-lg font-semibold transition-colors',
+                  quantity > 0
+                    ? 'bg-indigo-700 hover:bg-indigo-800 text-white'
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed',
+                ]">
                   Add to Cart
-                </button>
-
-                <button class="w-full py-3 px-6 border border-gray-300 rounded-lg font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
-                  Add to Wishlist
                 </button>
               </div>
             </div>
