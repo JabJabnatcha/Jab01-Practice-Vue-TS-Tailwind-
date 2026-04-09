@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import { router } from '../router';
 import CartIcon from './icons/CartIcon.vue';
 import LoginIcon from './icons/LoginIcon.vue';
-
+import logo from '../assets/Logo.png';
 </script>
 
 <template>
-    <nav class="bg-white flex items-center h-16 mt-2">
-
-        <div class="flex flex-1 justify-start gap-4 ml-10
-        ">
-        <router-link to="/">
-            Logo
-        </router-link>
-        </div>
+  <nav class="bg-white flex items-center h-16 mt-2">
+    <div class="flex flex-1 justify-start gap-4 ml-10">
+      <router-link to="/">
+        <img :src="logo" alt="Logo" class="w-10 h-10 object-cover" />
+      </router-link>
+    </div>
 
         <div class="flex flex-1 justify-center gap-6">
             <button class=" hover:text-gray-700">
@@ -34,9 +31,9 @@ import LoginIcon from './icons/LoginIcon.vue';
             <button class=" hover:text-gray-700">
                 <CartIcon class="w-6 h-6 text-gray-700" />
             </button>
-            <button class=" hover:text-gray-700 flex items-center gap-1">
+            <button class=" hover:text-gray-700 flex items-center gap-1 ">
                 Log in 
-                <LoginIcon class="w-6 h-6 text-gray-700" />
+                <LoginIcon class="w-6 h-6 text-gray-700 transform rotate-180" />
             </button>
         </div>
     </nav>
