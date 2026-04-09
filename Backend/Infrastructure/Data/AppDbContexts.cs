@@ -15,7 +15,14 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Product>()
-            .Property(p => p.ProductPrice)
-            .HasPrecision(18, 2);
+            .HasKey(p => p.Id);
+
+        modelBuilder.Entity<Product>()
+            .Property(p => p.Id)
+            .ValueGeneratedOnAdd();
+
+        modelBuilder.Entity<Product>()
+                 .Property(p => p.ProductPrice)
+                 .HasPrecision(18, 2);
     }
 }

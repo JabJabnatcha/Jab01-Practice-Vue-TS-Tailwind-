@@ -1,46 +1,16 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
 import TopBar from '../components/TopBar.vue';
 import SearchBar from '../components/SearchBar.vue';
 import ProductCard from '../components/ProductCard.vue';
-import { getAllProducts } from '../services/Productservice';
-import type { Product } from '../services/Productservice';
+import { useProducts } from '../composables/userProducts';
 
-const products = ref<Product[]>([]);
-const loading = ref(true);
-const error = ref('');
-const searchKeyword = ref('');
-
-const filteredProducts = computed(() => {
-  if (!searchKeyword.value) {
-    return products.value;
-  }
-  const query = searchKeyword.value.toLowerCase();
-  return products.value.filter(product =>
-    product.productName.toLowerCase().includes(query) ||
-    product.categories.toLowerCase().includes(query)
-  );
-});
-
-const handleSearch = (keyword: string) => {
-  searchKeyword.value = keyword;
-};
-
-const fetchProducts = async () => {
-  loading.value = true;
-  error.value = '';
-  try {
-    products.value = await getAllProducts();
-  } catch (err) {
-    error.value = err instanceof Error ? err.message : 'Failed to load products';
-  } finally {
-    loading.value = false;
-  }
-};
-
-onMounted(() => {
-  fetchProducts();
-});
+const {
+  filteredProducts,
+  loading,
+  error,
+  handleSearch,
+  fetchProducts
+} = useProducts();
 </script>
 
 <template>

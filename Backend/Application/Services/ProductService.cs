@@ -18,7 +18,7 @@ public class ProductService
         return await _repo.GetAllAsync();
     }
 
-    public async Task<Product?> GetByIdAsync(Guid id)
+    public async Task<Product?> GetByIdAsync(int id) 
     {
         return await _repo.GetByIdAsync(id);
     }
@@ -27,7 +27,7 @@ public class ProductService
     {
         var product = new Product
         {
-            Id = Guid.NewGuid(),
+            // Id ถูก generate โดย DB/EF Core เอง
             ProductName = dto.ProductName,
             ProductPrice = dto.ProductPrice,
             Categories = dto.Categories,
@@ -38,7 +38,7 @@ public class ProductService
         await _repo.AddAsync(product);
     }
 
-    public async Task UpdateAsync(Guid id, ProductDto dto, string imagePath)
+    public async Task UpdateAsync(int id, ProductDto dto, string imagePath) 
     {
         var product = await _repo.GetByIdAsync(id);
         if (product == null) return;
@@ -63,23 +63,19 @@ public class ProductService
         {
             if (!string.IsNullOrEmpty(product.Image))
             {
-                // Fix double /images//images/ paths
                 if (product.Image.Contains("/images//images/"))
                 {
                     product.Image = product.Image.Replace("/images//images/", "/images/");
                 }
-                // Fix other bad paths if needed
                 else if (product.Image == "test.png")
                 {
-                    product.Image = ""; // Clear invalid paths
+                    product.Image = ""; 
                 }
             }
         }
-        // Note: In a real app, you'd save changes here, but since this is a simple repo,
-        // we'll assume the changes are persisted through the repo
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task DeleteAsync(int id) 
     {
         await _repo.DeleteAsync(id);
     }

@@ -1,54 +1,17 @@
 <script setup lang="ts">
 import TopBar from "../components/TopBar.vue";
-import { ref, onMounted, computed } from "vue";
-import { useRoute } from "vue-router";
-import { getProductById } from "../services/Productservice";
-import type { Product } from "../services/Productservice";
+import { useProductDetail } from "../composables/useProductDetail";
 
-const route = useRoute();
-const product = ref<Product | null>(null);
-const quantity = ref(1);
-
-onMounted(async () => {
-  const id = route.params.id as string;
-  product.value = await getProductById(id);
-});
-
-const getImageUrl = (imagePath: string) => {
-  if (!imagePath || imagePath.trim() === "" || imagePath === "test.png") {
-    return "/src/assets/bicycle.jpg"; // fallback image
-  }
-
-  // Fix double paths
-  const cleanPath = imagePath.replace("/images//images/", "/images/");
-
-  return `http://localhost:5111${cleanPath}`;
-};
-
-const handleImageError = (event: Event) => {
-  const img = event.target as HTMLImageElement;
-  img.src = "/src/assets/bicycle.jpg"; // fallback on error
-};
-
-const increaseQuantity = () => {
-  if (product.value && quantity.value < product.value.stock) {
-    quantity.value++;
-  }
-};
-
-const decreaseQuantity = () => {
-  if (quantity.value > 0) {
-    quantity.value--;
-  }
-};
-
-const canIncrease = computed(() => {
-  return product.value ? quantity.value < product.value.stock : false;
-});
-
-const canDecrease = computed(() => {
-  return quantity.value > 0;
-});
+const {
+  product,
+  quantity,
+  getImageUrl,
+  handleImageError,
+  increaseQuantity,
+  decreaseQuantity,
+  canIncrease,
+  canDecrease
+} = useProductDetail();
 </script>
 
 <template>
