@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Backend\\Backend.csproj": {}
+    "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Jab01-Practice-Vue-TS-Tailwind\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Backend\\Backend.csproj": {
+    "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Jab01-Practice-Vue-TS-Tailwind\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Jab01-Practice-Vue-TS-Tailwind\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Backend\\Backend.csproj",
+        "projectPath": "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Jab01-Practice-Vue-TS-Tailwind\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\Laptop-JAB\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Backend\\obj\\",
+        "outputPath": "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Jab01-Practice-Vue-TS-Tailwind\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Laptop-JAB\\AppData\\Roaming\\NuGet\\NuGet.Config"

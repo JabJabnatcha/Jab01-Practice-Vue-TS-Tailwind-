@@ -15,10 +15,17 @@
     "vue-router": "^5.0.4"
   },
   "devDependencies": {
+    "@eslint/css": "^1.1.0",
+    "@eslint/js": "^10.0.1",
     "@types/node": "^24.12.2",
     "@vitejs/plugin-vue": "^6.0.5",
     "@vue/tsconfig": "^0.9.1",
+    "eslint": "^10.2.0",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.4.0",
+    "jiti": "^2.6.1",
     "typescript": "~6.0.2",
+    "typescript-eslint": "^8.58.1",
     "vite": "^8.0.4",
     "vue-tsc": "^3.2.6"
   }

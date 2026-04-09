@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9BEfWHinbpo=",
+  "dgSpecHash": "UEjgCEy6nN4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\Laptop-JAB\\Desktop\\Learn\\WLB Pratcies\\Jab01-Practice-Vue-TS-Tailwind\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Laptop-JAB\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Laptop-JAB\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
