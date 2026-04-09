@@ -32,7 +32,7 @@ public class ProductService
             ProductPrice = dto.ProductPrice,
             Categories = dto.Categories,
             Stock = dto.Stock,
-            Image = $"/images/{imagePath}" 
+            Image = imagePath 
         };
 
         await _repo.AddAsync(product);

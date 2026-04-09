@@ -35,21 +35,21 @@ const {
             <div class="space-y-6">
               <!-- Product Title -->
               <div>
-                <h1 class="text-3xl font-bold text-gray-900 text-left mb-2">
+                <h1 class="text-3xl font-bold text-gray-900 text-left mb-1">
                   {{ product.productName }}
                 </h1>
-                <h3 class="text-gray-600 text-sm text-left py-1">
+                <h3 class="text-gray-600 text-sm text-left">
                   {{ product.categories }}
                 </h3>
               </div>
 
               <!-- Price -->
               <div class="flex items-baseline space-x-4">
-                <span class="text-4xl font-bold text-black">$ {{ product.productPrice }}</span>
+                <span class="text-4xl font-semibold text-black">${{ product.productPrice }}</span>
               </div>
               <!-- Quantity Selector -->
               <div class="space-y-3 text-left">
-                <label class="block text-sm font-medium text-gray-700">Quantity</label>
+                <label class="block text-sm font-bold text-gray-700">Quantity</label>
 
                 <div class="inline-flex items-center justify-start border border-gray-400 rounded-md overflow-hidden">
                   <!-- Decrease Button -->
@@ -84,8 +84,8 @@ const {
                 </div>
               </div>
               <!-- Stock Information -->
-              <div class="flex items-center space-x-2">
-                <span class="text-sm text-gray-600">Stock: {{ product.stock }} items</span>
+              <div class="flex items-center">
+                <span class="text-sm text-gray-600">Stock {{ product.stock }} items</span>
               </div>
               <!-- Action Buttons -->
               <div class="space-y-3">
