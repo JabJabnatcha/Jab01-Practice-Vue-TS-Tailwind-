@@ -1,7 +1,8 @@
 import { ref, computed, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute } from "vue-router";}
 import { getProductById } from "../services/Productservice";
 import type { Product } from "../services/Productservice";
+import imageNotFound from '../assets/image-not-found.jpg';
 
 export function useProductDetail() {
   const route = useRoute();
@@ -11,7 +12,7 @@ export function useProductDetail() {
 
   const getImageUrl = (imagePath: string) => {
     if (!imagePath || imagePath.trim() === "" || imagePath === "test.png") {
-      return "";
+      return imageNotFound;
     }
 
     const cleanPath = imagePath.replace("/images//images/", "/images/");
@@ -20,7 +21,7 @@ export function useProductDetail() {
 
   const handleImageError = (event: Event) => {
     const img = event.target as HTMLImageElement;
-    img.src = "/src/assets/bicycle.jpg"; // fallback on error
+    img.src = imageNotFound;
   };
 
   const increaseQuantity = () => {

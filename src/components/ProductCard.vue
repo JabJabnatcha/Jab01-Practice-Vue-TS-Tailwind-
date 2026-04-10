@@ -1,20 +1,29 @@
 <script setup lang="ts">
 import type { Product } from '../services/Productservice';
+import imageNotFound from '../assets/image-not-found.jpg';
 
 defineProps<{ product: Product }>();
 
-const getImageUrl = (imagePath: string) => {
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ||'';
+
+const getImageUrl = (imagePath: string | null | undefined) => {
   if (!imagePath || imagePath.trim() === '' || imagePath === 'test.png') {
-    return '/src/assets/bicycle.jpg';
+    return imageNotFound;
   }
 
-  const cleanPath = imagePath.replace('/images//images/', '/images/');
-  return `http://localhost:5111${cleanPath}`;
+  const cleanPath = imagePath
+  .replace(/\/{2,}/g, '/')
+  .replace('/images/images/', '/images/');
+  return `${API_BASE_URL}${cleanPath}`;
+
 };
 
 const handleImageError = (event: Event) => {
   const img = event.target as HTMLImageElement;
-  img.src = '/src/assets/bicycle.jpg';
+
+  if (img.src !== imageNotFound) {
+    img.src = imageNotFound;
+  }
 };
 </script>
 
