@@ -1,5 +1,5 @@
 import { ref, computed, onMounted } from "vue";
-import { useRoute } from "vue-router";}
+import { useRoute } from "vue-router";
 import { getProductById } from "../services/Productservice";
 import type { Product } from "../services/Productservice";
 import imageNotFound from '../assets/image-not-found.jpg';

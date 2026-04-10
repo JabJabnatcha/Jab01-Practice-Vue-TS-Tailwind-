@@ -6,7 +6,9 @@ export function useProducts() {
   const products = ref<Product[]>([]);
   const loading = ref(true);
   const error = ref("");
-  const searchKeyword = ref("");
+
+  const inputKeyword = ref("");  
+  const searchKeyword = ref("");  
 
   const filteredProducts = computed(() => {
     const query = searchKeyword.value.trim().toLowerCase();
@@ -15,12 +17,12 @@ export function useProducts() {
     return products.value.filter(
       (product) =>
         (product.productName ?? "").toLowerCase().includes(query) ||
-        (product.categories ?? "").toLowerCase().includes(query),
+        (product.categories ?? "").toLowerCase().includes(query)
     );
   });
 
-  const handleSearch = (keyword: string) => {
-    searchKeyword.value = keyword;
+  const handleSearch = () => {
+    searchKeyword.value = inputKeyword.value;
   };
 
   const fetchProducts = async () => {
@@ -44,6 +46,7 @@ export function useProducts() {
     products,
     loading,
     error,
+    inputKeyword,
     searchKeyword,
     filteredProducts,
     handleSearch,
