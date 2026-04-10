@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5111/api/product';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export interface Product {
   id: string;
@@ -12,12 +12,16 @@ export interface Product {
 
 const fetchJson = async <T>(url: string): Promise<T> => {
   const response = await fetch(url);
+
   if (!response.ok) {
     const message = await response.text();
     throw new Error(message || `Request failed with status ${response.status}`);
   }
+
   return response.json();
 };
+
+const API_URL = `${API_BASE_URL}/api/Product`; // ⭐ สำคัญมาก
 
 export const getAllProducts = async (): Promise<Product[]> => {
   return fetchJson<Product[]>(API_URL);

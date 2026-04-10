@@ -7,14 +7,15 @@ export function useProductDetail() {
   const route = useRoute();
   const product = ref<Product | null>(null);
   const quantity = ref(1);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const getImageUrl = (imagePath: string) => {
     if (!imagePath || imagePath.trim() === "" || imagePath === "test.png") {
-      return "/src/assets/bicycle.jpg"; // fallback image
+      return "";
     }
 
     const cleanPath = imagePath.replace("/images//images/", "/images/");
-    return `http://localhost:5111${cleanPath}`;
+    return `${API_BASE_URL}${cleanPath}`;
   };
 
   const handleImageError = (event: Event) => {
@@ -34,7 +35,9 @@ export function useProductDetail() {
     }
   };
 
-  const canIncrease = computed(() => (product.value ? quantity.value < product.value.stock : false));
+  const canIncrease = computed(() =>
+    product.value ? quantity.value < product.value.stock : false,
+  );
   const canDecrease = computed(() => quantity.value > 0);
 
   onMounted(async () => {
@@ -50,6 +53,6 @@ export function useProductDetail() {
     increaseQuantity,
     decreaseQuantity,
     canIncrease,
-    canDecrease
+    canDecrease,
   };
 }

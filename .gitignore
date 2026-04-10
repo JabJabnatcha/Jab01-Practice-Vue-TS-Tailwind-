@@ -32,3 +32,5 @@ obj/
 *.pdb
 *.dll
 *.exe
+
+.env
