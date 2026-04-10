@@ -15,7 +15,7 @@ public class ProductService
 
     public async Task<List<Product>> GetAllAsync()
     {
-        return await _repo.GetAllAsync();
+        return await _repo.GetAllAsync(10); // Limitไว้ที่ 10
     }
 
     public async Task<Product?> GetByIdAsync(int id) 

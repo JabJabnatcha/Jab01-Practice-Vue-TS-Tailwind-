@@ -14,12 +14,18 @@ public class ProductRepository : IProductRepository
         _context = context;
     }
 
-    public async Task<List<Product>> GetAllAsync()
+    public async Task<List<Product>> GetAllAsync(int? limit = null)
+{
+    var query = _context.Products
+        .Where(p => !p.IsDelete);
+
+    if (limit.HasValue)
     {
-        return await _context.Products
-            .Where(p => !p.IsDelete)
-            .ToListAsync();
+        query = query.Take(limit.Value);
     }
+
+    return await query.ToListAsync();
+}
 
     // เปลี่ยนจาก Guid → int
     public async Task<Product?> GetByIdAsync(int id)
